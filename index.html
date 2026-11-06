@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 10th Monthiversary, My Love! ✨💖</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                            950: '#4c0519',
+                        },
+                        champagne: {
+                            100: '#fdfbf7',
+                            200: '#f7f0e3',
+                            300: '#eee0ca',
+                            400: '#e1caaa',
+                            500: '#d4b28c',
+                        }
+                    },
+                    fontFamily: {
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        handwriting: ['"Dancing Script"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    keyframes: {
+                        floatOrb: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.95)' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        waxPulse: {
+                            '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 15px rgba(225, 29, 72, 0.4)' },
+                            '50%': { transform: 'scale(1.08)', boxShadow: '0 0 25px rgba(225, 29, 72, 0.7)' }
+                        }
+                    },
+                    animation: {
+                        floatOrb1: 'floatOrb 18s ease-in-out infinite',
+                        floatOrb2: 'floatOrb 22s ease-in-out infinite reverse',
+                        shimmer: 'shimmer 3s linear infinite',
+                        waxPulse: 'waxPulse 2.5s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Modern Glassmorphic Styles */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 16px 40px -12px rgba(159, 18, 57, 0.08);
+        }
+
+        .glass-panel-dark {
+            background: rgba(76, 5, 25, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(251, 113, 133, 0.25);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-nav {
+            background: rgba(255, 241, 242, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(253, 164, 175, 0.3);
+        }
+
+        /* Perspective & 3D Flip Card Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Subtle mesh background noise */
+        .bg-mesh-gradient {
+            background-color: #fff1f2;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(253, 164, 175, 0.45) 0px, transparent 50%),
+                radial-gradient(at 90% 20%, rgba(251, 113, 133, 0.3) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(255, 228, 230, 0.6) 0px, transparent 50%),
+                radial-gradient(at 80% 90%, rgba(244, 63, 94, 0.25) 0px, transparent 50%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff1f2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fda4af;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f43f5e;
+        }
+
+        #bgCanvas, #heartShowerCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        #bgCanvas { z-index: 1; }
+        #heartShowerCanvas { z-index: 50; }
+    </style>
+</head>
+<body class="bg-mesh-gradient text-gray-800 font-sans min-h-screen relative overflow-x-hidden select-none">
+
+    <!-- Canvas Animation Backgrounds -->
+    <canvas id="bgCanvas"></canvas>
+    <canvas id="heartShowerCanvas"></canvas>
+
+    <!-- Glowing Ambient Light Orbs -->
+    <div class="fixed top-12 left-[-100px] w-96 h-96 bg-pink-300/40 rounded-full blur-3xl pointer-events-none animate-floatOrb1 z-0"></div>
+    <div class="fixed bottom-20 right-[-100px] w-[30rem] h-[30rem] bg-rose-400/30 rounded-full blur-3xl pointer-events-none animate-floatOrb2 z-0"></div>
+
+    <!-- STICKY FLOATING NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-4 py-3 glass-nav transition-all duration-300">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-600 to-pink-400 flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-heart text-xs animate-pulse"></i>
+                </div>
+                <span class="font-cormorant font-bold text-lg text-rose-950 tracking-wider">M & K</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden sm:flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider text-rose-900/80">
+                <a href="#letterSection" class="hover:text-rose-600 transition-colors">Letter</a>
+                <a href="#reasonsSection" class="hover:text-rose-600 transition-colors">10 Reasons</a>
+                <a href="#generatorSection" class="hover:text-rose-600 transition-colors">Love Jar</a>
+            </nav>
+
+            <!-- Audio Player Bar -->
+            <div class="flex items-center space-x-3 bg-white/60 border border-rose-200/80 rounded-full px-3 py-1.5 shadow-sm">
+                <div id="musicDisc" class="w-6 h-6 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px]">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div class="hidden sm:block">
+                    <p class="text-[11px] font-semibold text-rose-900 leading-none">Our Melody</p>
+                </div>
+                <div id="soundBars" class="flex items-end space-x-0.5 h-3 opacity-40">
+                    <span class="w-0.5 bg-rose-500 h-1.5 animate-bounce"></span>
+                    <span class="w-0.5 bg-rose-500 h-3 animate-bounce delay-75"></span>
+                    <span class="w-0.5 bg-rose-500 h-2 animate-bounce delay-150"></span>
+                </div>
+                <button id="toggleMusicBtn" onclick="toggleAudio()" class="w-6 h-6 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-600 flex items-center justify-center text-xs transition-colors">
+                    <i id="musicIcon" class="fa-solid fa-play"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative pt-24 pb-16 z-10">
+        <!-- High-end Badge -->
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-panel text-rose-700 text-xs sm:text-sm font-medium tracking-wide mb-6 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+            <span>Happy 10th Monthiversary</span>
+            <i class="fa-solid fa-sparkles text-rose-400"></i>
+        </div>
+
+        <h1 class="font-cormorant text-5xl sm:text-7xl md:text-8xl font-bold text-rose-950 leading-tight mb-4 max-w-4xl tracking-tight">
+            Ten Months of Pure Magic, <br>
+            <span class="font-handwriting text-6xl sm:text-8xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-rose-600 via-pink-500 to-rose-700 block mt-2 font-normal">
+                Forever With You 💖
+            </span>
+        </h1>
+
+        <p class="text-rose-900/80 text-sm sm:text-base md:text-lg max-w-md sm:max-w-xl mb-10 leading-relaxed font-light">
+            Every second spent loving you feels like a beautiful dream I never want to wake up from. Here is to our benchmark 10th month together.
+        </p>
+
+        <!-- Dynamic Counter Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-xl mb-10 px-2">
+            <div class="glass-panel p-4 rounded-3xl flex flex-col items-center transform hover:-translate-y-1 transition-transform">
+                <span id="countDays" class="font-cormorant text-3xl sm:text-4xl font-bold text-rose-700">304</span>
+                <span class="text-[10px] sm:text-xs text-rose-900/70 font-semibold uppercase tracking-widest mt-1">Days Passed</span>
+            </div>
+            <div class="glass-panel p-4 rounded-3xl flex flex-col items-center transform hover:-translate-y-1 transition-transform">
+                <span id="countHours" class="font-cormorant text-3xl sm:text-4xl font-bold text-rose-700">7,296</span>
+                <span class="text-[10px] sm:text-xs text-rose-900/70 font-semibold uppercase tracking-widest mt-1">Hours Shared</span>
+            </div>
+            <div class="glass-panel p-4 rounded-3xl flex flex-col items-center transform hover:-translate-y-1 transition-transform">
+                <span id="countMins" class="font-cormorant text-3xl sm:text-4xl font-bold text-rose-700">437,760</span>
+                <span class="text-[10px] sm:text-xs text-rose-900/70 font-semibold uppercase tracking-widest mt-1">Minutes Loved</span>
+            </div>
+            <div class="glass-panel p-4 rounded-3xl flex flex-col items-center transform hover:-translate-y-1 transition-transform">
+                <span class="font-cormorant text-3xl sm:text-4xl font-bold text-rose-700">∞</span>
+                <span class="text-[10px] sm:text-xs text-rose-900/70 font-semibold uppercase tracking-widest mt-1">Memories Left</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto px-4">
+            <a href="#letterSection" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-rose-600 via-rose-500 to-pink-500 hover:opacity-95 text-white font-semibold rounded-full shadow-lg shadow-rose-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2 text-sm tracking-wide">
+                <span>Unfold My Letter</span>
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </a>
+            <button onclick="triggerHeartShower()" class="w-full sm:w-auto px-8 py-3.5 glass-panel text-rose-700 hover:bg-white/80 font-semibold rounded-full transition-all flex items-center justify-center space-x-2 text-sm border border-rose-300/80">
+                <span>Send Floating Hearts</span>
+                <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- WAX SEAL INTERACTIVE LOVE LETTER SECTION -->
+    <section id="letterSection" class="py-20 px-4 max-w-4xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="text-rose-600 font-handwriting text-3xl">From The Bottom Of My Heart</span>
+            <h2 class="font-cormorant text-3xl sm:text-5xl font-bold text-rose-950 mt-1">My 10th Month Letter For You</h2>
+            <div class="w-16 h-1 bg-gradient-to-r from-rose-400 to-pink-400 mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div class="relative w-full max-w-lg mx-auto">
+            <!-- Sealed Envelope Card -->
+            <div id="envelopeCard" onclick="toggleLetter()" class="cursor-pointer glass-panel p-8 rounded-3xl text-center shadow-xl hover:shadow-2xl transition-all duration-500 relative group overflow-hidden border border-rose-200">
+                <div class="absolute -right-12 -top-12 w-32 h-32 bg-rose-200/40 rounded-full blur-2xl group-hover:bg-rose-300/50 transition-colors"></div>
+                
+                <!-- Wax Seal Icon Effect -->
+                <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-rose-700 via-rose-600 to-rose-500 text-white mx-auto mb-4 shadow-lg flex items-center justify-center animate-waxPulse border-2 border-rose-300">
+                    <i id="envelopeIcon" class="fa-solid fa-stamp text-2xl"></i>
+                </div>
+                
+                <h3 class="font-cormorant text-2xl font-bold text-rose-950 mb-2">Break The Wax Seal 💌</h3>
+                <p class="text-xs text-rose-600 tracking-wide">Tap to read your personal 10th Monthiversary letter</p>
+            </div>
+
+            <!-- Unfolded Handwritten Letter -->
+            <div id="letterModal" class="hidden glass-panel p-6 sm:p-12 rounded-3xl shadow-2xl mt-6 border border-rose-300/80 relative transition-all duration-500">
+                <button onclick="toggleLetter()" class="absolute top-4 right-4 text-rose-400 hover:text-rose-700 w-9 h-9 rounded-full bg-rose-100/80 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+
+                <div class="text-left space-y-4 text-gray-700 leading-relaxed font-sans text-sm sm:text-base">
+                    <p class="font-handwriting text-4xl text-rose-700 font-bold mb-4">Happy 10th monthsary, baby kooo! 💖</p>
+                    <p>
+                        Thank you so much for everything, baby. Thank you sa walang sawang pag-unawa, sa mahabang pasensya, at sa pagmamahal mo araw-araw. Sobrang thankful talaga ako na ikaw yung kasama ko sa journey na ’to—walang iba.
+                    </p>
+                    <p>
+                        Alam ko hindi laging madali yung distance natin, at may mga araw talaga na sobrang nakakamiss. Pero higit sa lahat, sobrang saya at proud ako kasi kahit gaano tayo kalayo sa isa’t isa, pinipili pa rin natin ang isa’t isa araw-araw. Solid lang talaga kung paano natin nalalagpasan lahat nang magkasama. 10 months na tayo, baby!
+                    </p>
+                    <p>
+                        Gusto ko lang ipaalala sa’yo na lagi lang akong nandito para sa’yo—sa good days, lalo na sa bad days. I’ll keep supporting you, understanding you, and loving you the best way I know how. Sana marami pa tayong months at years na ma-celebrate together, hanggang sa dumating yung araw na hindi na natin kailangan magpaalam sa isa’t isa at wala nang distance sa pagitan natin.
+                    </p>
+                    <p>
+                        Thank you for choosing me every single day, baby. I love you so, so much, and I’ll always cherish what we have.
+                    </p>
+                    <div class="pt-6 border-t border-rose-200/80 flex justify-between items-end">
+                        <div>
+                            <p class="text-xs text-rose-500 uppercase tracking-widest font-semibold">Forever & Always,</p>
+                            <p class="font-handwriting text-3xl text-rose-800 font-bold mt-1">Happy 10th monthsary, my love! ✨</p>
+                        </div>
+                        <div class="text-4xl text-rose-400/80">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 REASONS WHY I LOVE YOU (3D Flip Glass Cards) -->
+    <section id="reasonsSection" class="py-20 px-4 max-w-6xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-14">
+            <span class="text-rose-600 font-handwriting text-3xl">10 Months = 10 Heartfelt Reasons</span>
+            <h2 class="font-cormorant text-3xl sm:text-5xl font-bold text-rose-950 mt-1">Why I Adore You</h2>
+            <p class="text-xs sm:text-sm text-rose-900/70 mt-2">Tap each card to reveal why you mean the absolute world to me</p>
+            <div class="w-16 h-1 bg-gradient-to-r from-rose-400 to-pink-400 mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div id="reasonsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <!-- Javascript dynamic population -->
+        </div>
+    </section>
+
+    <!-- INTERACTIVE LOVE JAR GENERATOR -->
+    <section id="generatorSection" class="py-20 px-4 max-w-2xl mx-auto z-10 relative scroll-mt-20">
+        <div class="glass-panel p-8 sm:p-10 rounded-3xl text-center shadow-xl border border-rose-200">
+            <div class="w-16 h-16 bg-gradient-to-tr from-rose-500 to-pink-400 rounded-2xl flex items-center justify-center text-white mx-auto mb-4 shadow-md rotate-3">
+                <i class="fa-solid fa-jar text-2xl"></i>
+            </div>
+            <h2 class="font-cormorant text-3xl font-bold text-rose-950 mb-2">Our Love Note Jar</h2>
+            <p class="text-xs text-rose-900/70 mb-6">Need a sweet reminder right now? Pick a note from the jar!</p>
+
+            <div id="loveNoteBox" class="min-h-[100px] flex items-center justify-center p-6 bg-white/70 rounded-2xl border border-rose-200/90 mb-6 transition-all shadow-inner">
+                <p id="loveNoteText" class="font-handwriting text-2xl sm:text-3xl text-rose-700 italic">"Tap the button below to pick a note from the jar! ✨"</p>
+            </div>
+
+            <button onclick="generateLoveNote()" class="px-8 py-3.5 bg-gradient-to-r from-rose-600 via-rose-500 to-pink-500 text-white font-semibold rounded-full shadow-lg shadow-rose-500/25 hover:scale-105 active:scale-95 transition-transform flex items-center justify-center space-x-2 mx-auto text-sm">
+                <i class="fa-solid fa-heart"></i>
+                <span>Pull A Sweet Note</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="py-14 text-center text-rose-950/80 z-10 relative glass-nav mt-12">
+        <div class="max-w-md mx-auto px-4">
+            <p class="font-handwriting text-4xl text-rose-700 font-bold mb-2">I Love You Beyond Words</p>
+            <p class="text-xs text-rose-900/70 mb-4 tracking-wide">Crafted with endless love for our 10th Monthiversary</p>
+            <div class="flex justify-center space-x-3 text-rose-400 text-sm">
+                <i class="fa-solid fa-heart animate-pulse"></i>
+                <span>•</span>
+                <i class="fa-solid fa-sparkles"></i>
+                <span>•</span>
+                <i class="fa-solid fa-heart animate-pulse"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        const reasons = [
+            { id: 1, title: "Your Radiant Smile", icon: "fa-smile-beam", desc: "Your smile instantly brightens up even my darkest days. It's my absolute favorite sight in the world." },
+            { id: 2, title: "Your Gentle Heart", icon: "fa-heart", desc: "The way you care for people around you with pure empathy inspires me every single day." },
+            { id: 3, title: "Our Endless Laughs", icon: "fa-face-laugh-squint", desc: "From inside jokes to silly antics, laughing with you is my ultimate stress reliever." },
+            { id: 4, title: "Your Support", icon: "fa-hand-holding-heart", desc: "You are my biggest cheerleader and my safest anchor through every single high and low." },
+            { id: 5, title: "Your Warm Hugs", icon: "fa-hands-holding", desc: "Being wrapped in your arms feels like coming home. Nothing in the world is more comforting." },
+            { id: 6, title: "Your Sweet Voice", icon: "fa-comments", desc: "Hearing your voice at the end of a long day makes everything instantly peaceful and better." },
+            { id: 7, title: "Your Playful Humor", icon: "fa-masks-theater", desc: "You know exactly how to make me laugh and tease me in the sweetest, most adorable ways." },
+            { id: 8, title: "How You Listen", icon: "fa-ear-listen", desc: "You listen with full attention, making me feel so genuinely valued and deeply understood." },
+            { id: 9, title: "Our Shared Dreams", icon: "fa-cloud-moon", desc: "Building our future together and planning big dreams brings me so much happiness and excitement." },
+            { id: 10, title: "Simply Being You", icon: "fa-star", desc: "I love every single quirk, flaw, and detail about you. You are truly my one and only person." }
+        ];
+
+        const loveNotes = [
+            "Every day with you is my new favorite day. 🌹",
+            "You are the absolute best decision I ever made! 💖",
+            "If I had a flower for every time I thought of you, I'd walk in a garden forever. 🌸",
+            "Ten months down, a lifetime to go! ✨",
+            "My favorite place in the whole world is right next to you. 🏡",
+            "Thank you for being my peace, my joy, and my lover. 💌",
+            "You make my heart skip a beat every single day. 💓",
+            "I love you more than words could ever describe! ❤️"
+        ];
+
+        // Render Cards
+        const reasonsGrid = document.getElementById('reasonsGrid');
+        reasons.forEach(item => {
+            const cardHTML = `
+                <div class="perspective-1000 h-52 cursor-pointer group" onclick="flipCard(this)">
+                    <div class="transform-style-3d relative w-full h-full shadow-sm group-hover:shadow-lg rounded-3xl transition-all">
+                        <!-- Front -->
+                        <div class="backface-hidden absolute inset-0 glass-panel rounded-3xl p-4 flex flex-col items-center justify-center text-center border border-rose-200/80">
+                            <div class="w-11 h-11 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm">
+                                <i class="fa-solid ${item.icon} text-lg"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-rose-400">Reason #${item.id}</span>
+                            <h3 class="font-cormorant text-lg font-bold text-rose-950 mt-1">${item.title}</h3>
+                            <span class="text-[11px] text-rose-500 mt-2 flex items-center space-x-1 font-medium">
+                                <span>Tap card</span>
+                                <i class="fa-solid fa-rotate text-[10px]"></i>
+                            </span>
+                        </div>
+                        <!-- Back -->
+                        <div class="backface-hidden rotate-y-180 absolute inset-0 glass-panel-dark rounded-3xl p-5 flex flex-col items-center justify-center text-center text-white">
+                            <h4 class="font-cormorant text-base font-bold text-rose-200 mb-2">${item.title}</h4>
+                            <p class="text-xs text-rose-100 leading-relaxed font-light">${item.desc}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            reasonsGrid.innerHTML += cardHTML;
+        });
+
+        function flipCard(element) {
+            const innerCard = element.querySelector('.transform-style-3d');
+            innerCard.classList.toggle('rotate-y-180');
+        }
+
+        function toggleLetter() {
+            const letterModal = document.getElementById('letterModal');
+            const envelopeIcon = document.getElementById('envelopeIcon');
+            
+            if (letterModal.classList.contains('hidden')) {
+                letterModal.classList.remove('hidden');
+                envelopeIcon.className = 'fa-solid fa-envelope-open text-2xl';
+                letterModal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                letterModal.classList.add('hidden');
+                envelopeIcon.className = 'fa-solid fa-stamp text-2xl';
+            }
+        }
+
+        function generateLoveNote() {
+            const textElement = document.getElementById('loveNoteText');
+            const randomNote = loveNotes[Math.floor(Math.random() * loveNotes.length)];
+            
+            textElement.style.opacity = 0;
+            setTimeout(() => {
+                textElement.innerText = `"${randomNote}"`;
+                textElement.style.opacity = 1;
+            }, 200);
+
+            triggerHeartShower(16);
+        }
+
+        // Web Audio Synthesizer (Romantic Ambient Track Simulation)
+        let audioCtx = null;
+        let isPlaying = false;
+        let melodyInterval = null;
+
+        function toggleAudio() {
+            const musicIcon = document.getElementById('musicIcon');
+            const soundBars = document.getElementById('soundBars');
+            const musicDisc = document.getElementById('musicDisc');
+
+            if (!isPlaying) {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                audioCtx.resume();
+                isPlaying = true;
+                musicIcon.className = 'fa-solid fa-pause';
+                soundBars.classList.remove('opacity-40');
+                musicDisc.classList.add('animate-spin');
+                playRomanticMelody();
+            } else {
+                isPlaying = false;
+                musicIcon.className = 'fa-solid fa-play';
+                soundBars.classList.add('opacity-40');
+                musicDisc.classList.remove('animate-spin');
+                if (melodyInterval) clearInterval(melodyInterval);
+            }
+        }
+
+        function playRomanticMelody() {
+            const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23];
+            let noteIdx = 0;
+
+            melodyInterval = setInterval(() => {
+                if (!isPlaying || !audioCtx) return;
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(notes[noteIdx], audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.8);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.8);
+
+                noteIdx = (noteIdx + 1) % notes.length;
+            }, 1000);
+        }
+
+        // Background Micro-Hearts Canvas Particle Animation
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let bgParticles = [];
+
+        function resizeCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            showerCanvas.width = window.innerWidth;
+            showerCanvas.height = window.innerHeight;
+        }
+
+        class BgParticle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = bgCanvas.height + Math.random() * 20;
+                this.size = Math.random() * 8 + 4;
+                this.speedY = Math.random() * 0.8 + 0.3;
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.y -= this.speedY;
+                if (this.y < -20) this.reset();
+            }
+            draw() {
+                bgCtx.save();
+                bgCtx.globalAlpha = this.opacity;
+                bgCtx.fillStyle = '#f43f5e';
+                bgCtx.font = `${this.size}px FontAwesome`;
+                bgCtx.fillText('♥', this.x, this.y);
+                bgCtx.restore();
+            }
+        }
+
+        function initBgParticles() {
+            bgParticles = [];
+            for (let i = 0; i < 25; i++) {
+                bgParticles.push(new BgParticle());
+            }
+        }
+
+        function animateBg() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            bgParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateBg);
+        }
+
+        // Heart Shower Burst Canvas FX
+        const showerCanvas = document.getElementById('heartShowerCanvas');
+        const showerCtx = showerCanvas.getContext('2d');
+        let showerParticles = [];
+
+        class ShowerHeart {
+            constructor() {
+                this.x = window.innerWidth / 2;
+                this.y = window.innerHeight / 2;
+                this.size = Math.random() * 16 + 10;
+                this.speedX = (Math.random() - 0.5) * 12;
+                this.speedY = (Math.random() - 0.7) * 14;
+                this.gravity = 0.25;
+                this.opacity = 1;
+                this.color = ['#f43f5e', '#fb7185', '#e11d48', '#fda4af'][Math.floor(Math.random() * 4)];
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.speedY += this.gravity;
+                this.opacity -= 0.015;
+            }
+            draw() {
+                showerCtx.save();
+                showerCtx.globalAlpha = Math.max(this.opacity, 0);
+                showerCtx.fillStyle = this.color;
+                showerCtx.font = `${this.size}px sans-serif`;
+                showerCtx.fillText('❤️', this.x, this.y);
+                showerCtx.restore();
+            }
+        }
+
+        function triggerHeartShower(count = 35) {
+            for (let i = 0; i < count; i++) {
+                showerParticles.push(new ShowerHeart());
+            }
+        }
+
+        function animateShower() {
+            showerCtx.clearRect(0, 0, showerCanvas.width, showerCanvas.height);
+            showerParticles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                if (p.opacity <= 0) showerParticles.splice(index, 1);
+            });
+            requestAnimationFrame(animateShower);
+        }
+
+        window.onload = function() {
+            resizeCanvas();
+            initBgParticles();
+            animateBg();
+            animateShower();
+            window.addEventListener('resize', resizeCanvas);
+        };
+    </script>
+</body>
+</html>
